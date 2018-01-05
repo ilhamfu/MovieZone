@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block judul%}{{film}}-Movieders Zone{%endblock%}
+{%block badan%}
+      <!-- START INTRO -->
+        <div style="color: #1E88E5;" class="intro-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-2 icon-home">
+                <div class="img-thumbnail">
+                    <img src="{{ film.gmr.url }}">
+                </div>
+              </div>
+              <div class="col-md-10">
+                <h2 style="margin-bottom:5px;">{{film}}</h2>
+                <p>Genre : {% for i in film.genre.all %}<a href="{% url 'browseg' i.pk %}">{{i}}</a>,{% endfor %}</p>
+                <p>Rilis : <a href="{% url 'browset' film.tahun %}">{{film.tahun}}</a></p>
+                <p>
+					{%if j.ket%}"{{j.ket}}"{%endif%}
+                </p>
+					Rating : {% for i in nilai %}{% if i %}<img src="{% static 'movie/img/sh.png' %}" height="32px" width="32px"> {% else %} <img src="{% static 'movie/img/se.png' %}" height="32px" width="32px" > {% endif %}{% endfor %}<br>
+					<form method="GET">
+					{%if islogin%}R Anda :{% for i,j in nilaiu %}{% if i %}<input type="image" src="{% static 'movie/img/sh.png' %}" name="s{{ j }}" height="32px" width="32px" />{% else %}<input type="image" src="{% static 'movie/img/se.png' %}" name="e{{j}}" height="32px" width="32px" />{% endif %}{% endfor %}{%endif%}<br>
+					</form>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      <!-- END INTRO -->
+    </div>
+{%endblock%}

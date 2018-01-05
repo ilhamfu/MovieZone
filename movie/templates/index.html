@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block judul%}Movieders Zone{%endblock%}
+{%block badan%}
+      <!-- begin Top movie list -->
+      <div class="galery-wrapper">
+          <div class="container">
+            <h4 style="color: #1e88e5b0;">Top Movie</h4>
+             <div class="row"> <!--kolom -->
+
+              <!-- begin 1 kotak movie -->
+              {% for i,j in top %}
+              <a href="{% url 'content' j.pk %}" class="col-md-3">
+                <div class="img-thumbnail">
+                    <img src="{{ j.gmr.url }}">
+
+                    <div class="top-wrapper">
+                      <div class="text-center">
+                        IMDB Rating {{ i }}
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      {{ j }}
+                    </div>
+                </div>
+              </a>
+              {% endfor %}
+              <!-- end 1 kotak movie -->
+
+            </div>
+          </div>
+        </div>
+        <!-- end movie list -->
+
+        <!-- begin movie list -->
+        <div class="galery-wrapper">
+            <div class="container">
+              <h4 style="color: #1e88e5b0; margin-top;">Lastest Movie</h4>
+               <div class="row"> <!--kolom -->
+
+                <!-- begin 1 kotak movie -->
+                {% for i,j in latest %}
+                <a href="{% url 'content' j.pk %}" class="col-md-3">
+                  <div class="img-thumbnail">
+                      <img src="{{ j.gmr.url }}">
+
+                      <div class="top-wrapper">
+                        <div class="text-center">
+                          IMDB Rating {{ i }}
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+                        {{ j }}
+                      </div>
+                  </div>
+                </a>
+                {% endfor %}
+                <!-- end 1 kotak movie -->
+
+              </div>
+            </div>
+          </div>
+          <!-- end movie list -->
+{%endblock%}

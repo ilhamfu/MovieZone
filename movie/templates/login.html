@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+      <!-- end header -->
+{% block judul %}Login{% endblock %}
+{% block badan %}
+
+    <div class="out">
+      <div class="outsideBox">
+        <form class="login"  method='POST'>
+		{% csrf_token %}
+          <h1>login</h1>
+          {% if warning %}{{ warning }}<br>{% endif %}
+          {{ form.non_field_errors }}
+          {{ form.username.errors}}
+          <label for="{{form.Username.id_for_label}}">Username</label>
+          {{form.Username}}
+          <label for="{{form.Password.id_for_label}}">Password</label>
+          {{form.Password}}
+
+          <button type="submit" >Login</button>
+
+          <h4>* Belum punya akun?
+          <a href="{% url 'register' %}">Register!</a></h4>
+
+        </form>
+      </div>
+    </div>
+{% endblock %}

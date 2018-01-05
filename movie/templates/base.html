@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block judul %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'movie/css/bootstrap.min.css' %}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'movie/style.css' %}">
+
+  </head>
+ 
+   <body>
+    <!--begin header -->
+      <div class="container">
+        <div class="header">
+          <h4><a href="{% url 'index' %}" class"title"> Movieders Zone</a></h4>
+          <div class="nav">
+            <a href="{% url 'index' %}">Home</a>
+            <ul class="dropmenu">
+              <li><a href="{% url 'browsea' %}">Browse</a>
+                <ul>
+					   <h6>Year</h6>
+						{% for t in tahun %}
+						<li><a href="{% url 'browset' t %}">{{t}}</a></li>
+						{% endfor%}
+						<h6>Genre</h6>
+						{% for g in genre %}
+						<li><a href="{% url 'browseg' g.pk %}">{{g}}</a></li>
+						{% endfor%}
+                </ul>
+              </li>
+
+            </ul>
+            {%if not islogin%}<a href="{% url 'login' %}">Login</a>{%else%}<a href="{% url 'logout' %}">{{user}}</a>{%endif%}
+
+          </div>
+        </div>
+      </div>
+      
+      {% block badan %}{% endblock %}
+      
+      <div class="category-wrapper">
+      <div class="category">
+
+      <div class="container">
+        <h2 class="text-center">Movieders Zone</h2>
+
+        <ul class="category">
+          <li class=item>
+            <a href="{% url 'browsea' %}">
+              <span class="lnr lnr-star-half"></span>All Movie
+            </a>
+          </li>
+          <li class=item>
+			{%if not islogin%}
+            <a href="{% url 'login' %}">
+              <span class="lnr lnr-star-half"></span>Login
+            </a>
+            {%endif%}
+          </li>
+          <li class=item>
+			{%if not islogin%}  
+            <a href="{% url 'register' %}">
+              <span class="lnr lnr-star-half"></span>Register
+            </a>
+            {%endif%}
+          </li>
+          <li class=item>
+            <a href="{% url 'about' %}">
+              <span class="lnr lnr-star-half"></span>Help and About
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+	</body>
+</html>

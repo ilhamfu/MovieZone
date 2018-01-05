@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block judul %} Movieders Zone {% endblock %}
+    <!-- begin movie list -->
+{% block badan %}
+    <div class="galery-wrapper">
+        <div class="container">
+		<h1>{{ket}}</h1>
+           <div class="row"> <!--kolom -->
+            {% for i,j in film %}
+            <a href="{% url 'content' j.pk %}" class="col-md-3">
+              <div class="img-thumbnail">
+                  <img src="{{ j.gmr.url }}"> <!--  gambar -->
+
+                  <div class="top-wrapper">
+                    <div class="text-center">
+                      IMDB Rating {{i}}
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    {{j}}
+                  </div>
+              </div>
+            </a>
+            <!-- end 1 kotak movie -->
+			{% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- end movie list -->
+
+{% endblock %}
